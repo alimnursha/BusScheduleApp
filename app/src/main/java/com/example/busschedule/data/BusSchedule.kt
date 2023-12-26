@@ -24,7 +24,7 @@ data class BusSchedule(
     @PrimaryKey
     val id: Int,
     @ColumnInfo(name = "stop_name")
-    val stopName: String?,
+    val stopName: String,
     @ColumnInfo(name = "arrival_time")
-    val arrivalTimeInMillis: Int?
+    val arrivalTimeInMillis: Int
 )
