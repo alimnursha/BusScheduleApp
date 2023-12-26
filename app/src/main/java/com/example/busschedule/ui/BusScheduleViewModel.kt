@@ -24,19 +24,16 @@ import com.example.busschedule.BusScheduleApplication
 import com.example.busschedule.data.BusSchedule
 import com.example.busschedule.data.BusScheduleDao
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 
-class BusScheduleViewModel(private val busScheduleDao: BusScheduleDao) : ViewModel() {
-
-    // Get example bus schedule
+class BusScheduleViewModel(private val busScheduleDao: BusScheduleDao): ViewModel() {
+    // Get full bus schedule from Room DB
     fun getFullSchedule(): Flow<List<BusSchedule>> = busScheduleDao.getAll()
-
-    // Get example bus schedule by stop
+    // Get bus schedule based on the stop name from Room DB
     fun getScheduleFor(stopName: String): Flow<List<BusSchedule>> =
         busScheduleDao.getByStopName(stopName)
 
     companion object {
-        val factory: ViewModelProvider.Factory = viewModelFactory {
+        val factory : ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as BusScheduleApplication)
                 BusScheduleViewModel(application.database.busScheduleDao())
